@@ -38,6 +38,10 @@ const Home: React.FC<HomeProps> = () => {
           setIsLoading(false);
         }
       } catch (err: any) {
+        if (err.response.status === 401) {
+          window.alert("You are not authorized");
+          setIsLoading(true);
+        }
         if (err.response.status === 403) {
           window.alert("The number of requests has run out, reload the page");
           setIsLoading(true);
