@@ -2,10 +2,12 @@ import React from "react";
 
 interface UserProps {}
 
-export const User: React.FC<UserProps> = ({}) => {
+const User: React.FC<UserProps> = ({}) => {
   return (
     <div>
-      <p>UserPage</p>
+      <p>Repo Page</p>
     </div>
   );
 };
+
+export default User;
