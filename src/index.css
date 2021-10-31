@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 19px;
+}
+
 .notFound {
   display: flex;
   align-items: center;
@@ -32,4 +38,17 @@ code {
 
 .userCard:hover {
   background-color: rgba(224, 224, 224, 0.589);
+}
+
+.bio-text {
+  font-size: 21px;
+}
+
+.repo-card-container {
+  display: flex;
+  justify-content: space-around;
+}
+.main-container {
+  cursor: pointer;
+  transition: 0.2s linear;
 }

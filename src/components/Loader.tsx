@@ -3,7 +3,7 @@ import { Row, Spinner } from "react-bootstrap";
 
 interface LoaderProps {}
 
-const Loader: React.FC<LoaderProps> = ({}) => {
+const Loader: React.FC<LoaderProps> = () => {
   return (
     <Row
       style={{

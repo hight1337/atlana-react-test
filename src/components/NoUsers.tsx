@@ -3,7 +3,7 @@ import { Row } from "react-bootstrap";
 
 interface NoUsersProps {}
 
-export const NoUsers: React.FC<NoUsersProps> = ({}) => {
+export const NoUsers: React.FC<NoUsersProps> = () => {
   return (
     <Row>
       <p

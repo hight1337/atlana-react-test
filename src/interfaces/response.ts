@@ -1,3 +1,4 @@
+import { Repo } from "./repo";
 import { User } from "./user";
 
 export interface userApiResponse {
@@ -6,4 +7,8 @@ export interface userApiResponse {
     incomplete_results: boolean;
     items: User[];
   };
+}
+
+export interface userRepoResponse {
+  data: Repo[];
 }

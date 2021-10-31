@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import User from "./pages/User";
+import UserPage from "./pages/UserPage";
 import Error from "./pages/Error";
 
 interface AppProps {}
@@ -14,8 +14,8 @@ const App: React.FC<AppProps> = () => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/user/:id">
-            <User />
+          <Route path="/user/:login">
+            <UserPage />
           </Route>
           <Route path="*">
             <Error />

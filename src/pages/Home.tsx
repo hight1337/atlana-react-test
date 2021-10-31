@@ -1,16 +1,18 @@
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, FormControl, InputGroup, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
+import { HeaderTitle } from "../components/HeaderTitle";
+import { InputComponent } from "../components/InputComponent";
 import Loader from "../components/Loader";
 import { NoUsers } from "../components/NoUsers";
 import { UserCard } from "../components/UserCard";
-import { USER_TOKEN } from "../constants";
+import { SERVER_API, USER_TOKEN } from "../constants";
 import { userApiResponse } from "../interfaces/response";
 import { User } from "../interfaces/user";
 
 interface HomeProps {}
 
-const Home: React.FC<HomeProps> = ({}) => {
+const Home: React.FC<HomeProps> = () => {
   const [serachValue, setSearchValue] = useState<string>("");
   const [users, setUsers] = useState<User[]>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -24,7 +26,7 @@ const Home: React.FC<HomeProps> = ({}) => {
       try {
         setIsLoading(true);
         const { data }: userApiResponse = await axios.get(
-          ` https://api.github.com/search/users?q=${serachValue}`,
+          `${SERVER_API}search/users?q=${serachValue}`,
           {
             headers: {
               Authorization: `token ${USER_TOKEN}`,
@@ -50,19 +52,13 @@ const Home: React.FC<HomeProps> = ({}) => {
 
   return (
     <Container>
-      <Row>
-        <h1>GitHub Searcher</h1>
-      </Row>
-      <Row>
-        <InputGroup size="lg">
-          <FormControl
-            aria-label="Large"
-            aria-describedby="inputGroup-sizing-sm"
-            value={serachValue}
-            onChange={(e) => handleInputChange(e)}
-          />
-        </InputGroup>
-      </Row>
+      <HeaderTitle />
+      <InputComponent
+        placeholderText={"Input user here..."}
+        inputValue={serachValue}
+        onChange={handleInputChange}
+        inputSize={"lg"}
+      />
       {isLoading ? (
         <Loader />
       ) : (
@@ -71,12 +67,13 @@ const Home: React.FC<HomeProps> = ({}) => {
             users.map((user: User) => {
               const { avatar_url, login, id, repos_url } = user;
               return (
-                <UserCard
-                  key={id}
-                  imgUrl={avatar_url}
-                  userName={login}
-                  userRepoUrl={repos_url}
-                />
+                <a key={id} href={`/user/${login}`}>
+                  <UserCard
+                    imgUrl={avatar_url}
+                    userName={login}
+                    userRepoUrl={repos_url}
+                  />
+                </a>
               );
             })
           ) : (

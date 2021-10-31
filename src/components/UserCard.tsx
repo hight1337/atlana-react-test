@@ -50,7 +50,7 @@ export const UserCard: React.FC<UserCardProps> = ({
           <Image src={imgUrl} rounded width="60" height="60" />
         </Col>
         <Col>
-          <p>{userName}</p>
+          <p>{`User-name: ${userName}`}</p>
         </Col>
         <Col>
           {isLoading ? (
