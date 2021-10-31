@@ -2,7 +2,7 @@ import axios from "axios";
 import moment from "moment";
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
-import { SERVER_API, USER_TOKEN } from "../constants";
+import { SERVER_API } from "../constants";
 import { Repo } from "../interfaces/repo";
 import { userRepoResponse } from "../interfaces/response";
 import { iUser } from "../interfaces/user";
@@ -26,12 +26,7 @@ export const UserInfo: React.FC<UserInfoProps> = ({ userData, userName }) => {
     const getUserRepo = async () => {
       try {
         const { data }: userRepoResponse = await axios.get(
-          `${SERVER_API}users/${userName}/repos`,
-          {
-            headers: {
-              Authorization: `token ${USER_TOKEN}`,
-            },
-          }
+          `${SERVER_API}users/${userName}/repos`
         );
         setUserRepos(data);
       } catch (error) {
