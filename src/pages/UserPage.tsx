@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../components/Loader";
 import { UserInfo } from "../components/UserInfo";
-import { SERVER_API, USER_TOKEN } from "../constants";
+import { SERVER_API } from "../constants";
 import { iUser, UserResponse } from "../interfaces/user";
 
 interface UserPageProps {}
@@ -17,12 +17,7 @@ const UserPage: React.FC<UserPageProps> = () => {
     const getUserData = async () => {
       try {
         const { data }: UserResponse = await axios.get(
-          `${SERVER_API}users/${login}`,
-          {
-            headers: {
-              Authorization: `token ${USER_TOKEN}`,
-            },
-          }
+          `${SERVER_API}users/${login}`
         );
         setUser(data);
         setIsloading(false);

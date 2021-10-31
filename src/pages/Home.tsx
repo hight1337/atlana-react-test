@@ -6,7 +6,7 @@ import { InputComponent } from "../components/InputComponent";
 import Loader from "../components/Loader";
 import { NoUsers } from "../components/NoUsers";
 import { UserCard } from "../components/UserCard";
-import { SERVER_API, USER_TOKEN } from "../constants";
+import { SERVER_API } from "../constants";
 import { userApiResponse } from "../interfaces/response";
 import { User } from "../interfaces/user";
 
@@ -26,12 +26,7 @@ const Home: React.FC<HomeProps> = () => {
       try {
         setIsLoading(true);
         const { data }: userApiResponse = await axios.get(
-          `${SERVER_API}search/users?q=${serachValue}`,
-          {
-            headers: {
-              Authorization: `token ${USER_TOKEN}`,
-            },
-          }
+          `${SERVER_API}search/users?q=${serachValue}`
         );
         if (data) {
           setUsers(data.items);

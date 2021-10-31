@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { Col, Row, Image, Spinner } from "react-bootstrap";
-import { USER_TOKEN } from "../constants";
 
 interface UserCardProps {
   imgUrl: string;
@@ -24,9 +23,6 @@ export const UserCard: React.FC<UserCardProps> = ({
         try {
           const { data } = await axios.get(userRepoUrl, {
             cancelToken: cancelToken,
-            headers: {
-              Authorization: `token ${USER_TOKEN}`,
-            },
           });
           setNumberOfRepo(data.length);
           setIsLoading(false);
